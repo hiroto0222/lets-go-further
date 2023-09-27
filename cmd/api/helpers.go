@@ -9,6 +9,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+type envelope map[string]any
+
 // readIDParam retrieves the "id" URL parameter from the current request context, then converts it to
 // an integer and returns it. If the operation isn't successful, returns 0 and an error.
 func (app *application) readIDParam(r *http.Request) (int64, error) {
@@ -26,7 +28,7 @@ func (app *application) readIDParam(r *http.Request) (int64, error) {
 
 // writeJSON takes the http.ResponseWriter, the HTTP status code, and the data to encode to JSON,
 // and a header map containing any additional HTTP headers to include in the response.
-func (app *application) writeJSON(w http.ResponseWriter, status int, data any, headers http.Header) error {
+func (app *application) writeJSON(w http.ResponseWriter, status int, data envelope, headers http.Header) error {
 	// Encode the data to JSON
 	js, err := json.MarshalIndent(data, "", "\t")
 	if err != nil {
