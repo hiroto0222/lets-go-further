@@ -10,6 +10,11 @@ func (app *application) routes() http.Handler {
 	// Initialize a new httprouter router instance.
 	router := httprouter.New()
 
+	// Convert the notFoundResponse() helper to a http.Handler using the
+	// http.HandlerFunc() adapter, and then set it as the custom error handler for 404 Not Found responses.
+	router.NotFound = http.HandlerFunc(app.notFoundResponse)
+	router.MethodNotAllowed = http.HandlerFunc(app.methodNotAllowed)
+
 	// Register the relevant methods, URL patterns and handler functions for our endpoints
 	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
 	router.HandlerFunc(http.MethodPost, "/v1/movies", app.createMovieHandler)

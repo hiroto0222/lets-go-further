@@ -13,3 +13,4 @@
 - When Go encodes JSON, it looks to see if the type has a ```MarshalJSON() ([]byte, error)``` method implemented on it
 - ```func (r Runtime) MarshalJSON() ([]byte, error)``` -> value reciver r instead of pointer. The rule about pointers vs. values for receivers is that value methods can be invoked on pointers and values, but pointer methods can only be invoked on pointers.
   - could also create custom MarshalJSON on Movie struct
+- httprouter allows us to set our own custom error handlers
