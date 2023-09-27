@@ -8,3 +8,5 @@
   - ```omitempty``` directive hides a field in the JSON output if and only if the struct field value is empty
   - ```-``` never show particular field in JSON
   - ```string``` converts to JSON string (only works for int*, uint*, float* or bool)
+- ```json.MarshalIndent(data, "", "\t")``` -> Indents for raw response (but larger in bytes + time)
+- Enveloping responses
